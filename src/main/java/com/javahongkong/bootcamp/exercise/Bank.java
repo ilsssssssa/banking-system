@@ -2,7 +2,7 @@ package com.javahongkong.bootcamp.exercise;
 
 import java.util.LinkedHashMap;
 
-public class Bank implements BankInterface{
+public class Bank implements BankInterface {
 
 	private LinkedHashMap<Long, Account> accounts; // object reference
 
@@ -18,14 +18,17 @@ public class Bank implements BankInterface{
 		return accounts.get(accountNumber);
 	}
 
-	public Long openCommercialAccount(Company company, int pin, double startingDeposit) {
+	public Long openCommercialAccount(Company company, int pin,
+			double startingDeposit) {
 		// complete the function
-		CommercialAccount commercialAccount = new CommercialAccount(company, count++, pin, startingDeposit);
+		CommercialAccount commercialAccount =
+				new CommercialAccount(company, count++, pin, startingDeposit);
 		this.accounts.put(commercialAccount.getAccountNumber(), commercialAccount);
 		return commercialAccount.getAccountNumber();
 	}
 
-	public Long openConsumerAccount(Person person, int pin, double startingDeposit) {
+	public Long openConsumerAccount(Person person, int pin,
+			double startingDeposit) {
 		// complete the function
 		ConsumerAccount consumerAccount =
 				new ConsumerAccount(person, count++, pin, startingDeposit);
@@ -35,17 +38,17 @@ public class Bank implements BankInterface{
 
 	public boolean authenticateUser(Long accountNumber, int pin) {
 		// complete the function
-		return accounts.getAccount(accountNumber).getPin(validatePin);
+		return accounts.get(accountNumber).getPin() == pin;
 	}
 
 	public double getBalance(Long accountNumber) {
 		// complete the function
-		return accounts.getAccount(accountNumber).getBalance();
+		return accounts.get(accountNumber).getBalance();
 	}
 
 	public void credit(Long accountNumber, double amount) {
 		// complete the function
-		this.accounts.getAccount(accountNumber).creditAccount(amount);
+		this.accounts.get(accountNumber).creditAccount(amount);
 	}
 
 	public boolean debit(Long accountNumber, double amount) {
